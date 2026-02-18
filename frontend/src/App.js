@@ -27,7 +27,7 @@ function App() {
     return (
       <div className="app-loading-screen">
         <div className="loading-content">
-          <div className="loading-logo">🎫</div>
+          <img src="/Support_System_Favicon.png" alt="Logo" className="loading-logo" />
           <h1 className="loading-title">Support Ticket System</h1>
           <div className="loading-spinner-large"></div>
           <p className="loading-text">Initializing application...</p>
@@ -42,7 +42,7 @@ function App() {
         <header className="app-header">
           <div className="header-content">
             <div className="logo-section">
-              <div className="logo-icon">🎫</div>
+              <img src="/Support_System_Favicon.png" alt="Logo" className="logo-icon" />
               <div>
                 <h1 className="app-title">Support Ticket System</h1>
                 <p className="app-subtitle">
