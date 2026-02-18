@@ -82,61 +82,93 @@ const StatsDashboard = ({ refreshTrigger }) => {
       </div>
 
       {/* Breakdowns */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px', marginTop: '20px' }}>
+      <div className="breakdowns-container">
         
         {/* Priority Breakdown */}
-        <div>
-          <h3 style={{fontSize: '16px', marginBottom: '10px'}}>Priority Breakdown</h3>
-          <div className="breakdown">
+        <div className="breakdown-card">
+          <h3 className="breakdown-title">📌 Priority Breakdown</h3>
+          <div className="breakdown-table">
+            <div className="table-header">
+              <span>Priority</span>
+              <span>Count</span>
+            </div>
             {Object.entries(stats.priority_breakdown).length > 0 ? (
               Object.entries(stats.priority_breakdown).map(([priority, count]) => (
-                <div key={priority} className="breakdown-item">
-                  <span style={{textTransform: 'capitalize'}}>{priority}</span>
-                  <span style={{fontWeight: 'bold'}}>{count}</span>
+                <div key={priority} className="table-row">
+                  <span className="table-cell">
+                    <span className={`priority-dot priority-${priority}`}></span>
+                    <span style={{textTransform: 'capitalize'}}>{priority}</span>
+                  </span>
+                  <span className="table-cell count-cell">{count}</span>
                 </div>
               ))
             ) : (
-              <p style={{color: '#999', fontSize: '14px'}}>No data available</p>
+              <div className="empty-data">No data available</div>
             )}
           </div>
         </div>
 
         {/* Category Breakdown */}
-        <div>
-          <h3 style={{fontSize: '16px', marginBottom: '10px'}}>Category Breakdown</h3>
-          <div className="breakdown">
+        <div className="breakdown-card">
+          <h3 className="breakdown-title">📂 Category Breakdown</h3>
+          <div className="breakdown-table">
+            <div className="table-header">
+              <span>Category</span>
+              <span>Count</span>
+            </div>
             {Object.entries(stats.category_breakdown).length > 0 ? (
               Object.entries(stats.category_breakdown).map(([category, count]) => (
-                <div key={category} className="breakdown-item">
-                  <span style={{textTransform: 'capitalize'}}>{category}</span>
-                  <span style={{fontWeight: 'bold'}}>{count}</span>
+                <div key={category} className="table-row">
+                  <span className="table-cell">
+                    <span className="category-icon">{getCategoryIcon(category)}</span>
+                    <span style={{textTransform: 'capitalize'}}>{category}</span>
+                  </span>
+                  <span className="table-cell count-cell">{count}</span>
                 </div>
               ))
             ) : (
-              <p style={{color: '#999', fontSize: '14px'}}>No data available</p>
+              <div className="empty-data">No data available</div>
             )}
           </div>
         </div>
 
         {/* Status Breakdown */}
-        <div>
-          <h3 style={{fontSize: '16px', marginBottom: '10px'}}>Status Breakdown</h3>
-          <div className="breakdown">
+        <div className="breakdown-card">
+          <h3 className="breakdown-title">🎯 Status Breakdown</h3>
+          <div className="breakdown-table">
+            <div className="table-header">
+              <span>Status</span>
+              <span>Count</span>
+            </div>
             {Object.entries(stats.status_breakdown).length > 0 ? (
               Object.entries(stats.status_breakdown).map(([status, count]) => (
-                <div key={status} className="breakdown-item">
-                  <span style={{textTransform: 'capitalize'}}>{status.replace('_', ' ')}</span>
-                  <span style={{fontWeight: 'bold'}}>{count}</span>
+                <div key={status} className="table-row">
+                  <span className="table-cell">
+                    <span className={`status-indicator status-${status}`}></span>
+                    <span style={{textTransform: 'capitalize'}}>{status.replace('_', ' ')}</span>
+                  </span>
+                  <span className="table-cell count-cell">{count}</span>
                 </div>
               ))
             ) : (
-              <p style={{color: '#999', fontSize: '14px'}}>No data available</p>
+              <div className="empty-data">No data available</div>
             )}
           </div>
         </div>
       </div>
     </div>
   );
+};
+
+// Helper function for category icons
+const getCategoryIcon = (category) => {
+  const icons = {
+    billing: '💳',
+    technical: '🔧',
+    account: '👤',
+    general: '📋'
+  };
+  return icons[category] || '📋';
 };
 
 export default StatsDashboard;

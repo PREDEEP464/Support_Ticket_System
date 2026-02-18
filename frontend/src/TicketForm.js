@@ -106,6 +106,13 @@ const TicketForm = ({ onTicketCreated }) => {
         <p className="card-subtitle">Describe your issue and we'll categorize it automatically</p>
       </div>
       
+      <div className="info-banner">
+        <span className="info-icon">💡</span>
+        <div className="info-text">
+          <strong>Smart Classification:</strong> Just describe your issue in detail, and our system will automatically suggest the best category and priority for you!
+        </div>
+      </div>
+      
       {error && <div className="error">⚠️ {error}</div>}
       {success && <div className="success">✅ {success}</div>}
       
