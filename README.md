@@ -214,15 +214,11 @@ docker-compose down -v
 ![Main Dashboard](screenshots/Main.jpg)
 *Beautiful glassmorphism header with floating animations and system status indicator*
 
-### Frontend Application
-![Frontend Interface](screenshots/Frontend.jpg)
-*Modern, responsive React interface with smooth animations and intuitive navigation*
-
 ### Ticket Submission Form
 ![New Ticket Form](screenshots/NewTicket.jpg)
 *Easy-to-use form with smart classification and real-time validation*
 
-### Smart Classification in Action
+### LLM Classification
 ![Smart Classification](screenshots/Classify.jpg)
 *Automatic category and priority detection analyzing your ticket description*
 
@@ -230,11 +226,7 @@ docker-compose down -v
 ![Ticket List](screenshots/Tickets.jpg)
 *Filter, search, and manage all your support tickets with an intuitive interface*
 
-### Real-time Statistics
-![Statistics Dashboard](screenshots/Statistics.jpg)
-*Live analytics with priority, category, and status breakdowns in beautiful table layouts*
-
-### Backend Admin Panel
+### PostgreSQL Backend 
 ![Backend Administration](screenshots/Backend.jpg)
 *Django admin interface for advanced ticket management and system configuration*
 
