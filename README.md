@@ -6,9 +6,22 @@ A modern, full-stack support ticket management system with intelligent ticket cl
 
 ---
 
-## 📋 Table of Contents
+## � How to Start the Application?
 
-- [Features](#features)
+**A single line to start the application!**
+
+```bash
+docker-compose up --build
+```
+
+That's it! 🎉 The entire system (PostgreSQL database, Django backend, and React frontend) will be up and running at:
+- **Frontend:** http://localhost:3000
+- **Backend API:** http://localhost:8000/api/tickets/
+
+---
+
+## �📋 Table of Contents
+- [How to Start the Application](#how-to-start-the-application)- [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Architecture](#architecture)
 - [Setup Instructions](#setup-instructions)
