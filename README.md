@@ -1,6 +1,10 @@
 # Support Ticket System 🎫
 
-A full-stack AI-powered support ticket management system with intelligent ticket classification using LLM (Large Language Models).
+A modern, full-stack support ticket management system with intelligent ticket classification and real-time analytics. Built with Django, React, and PostgreSQL.
+
+**🔗 GitHub Repository:** [https://github.com/PREDEEP464/Support_Ticket_System](https://github.com/PREDEEP464/Support_Ticket_System)
+
+---
 
 ## 📋 Table of Contents
 
@@ -8,11 +12,11 @@ A full-stack AI-powered support ticket management system with intelligent ticket
 - [Tech Stack](#tech-stack)
 - [Architecture](#architecture)
 - [Setup Instructions](#setup-instructions)
+- [Screenshots](#screenshots)
 - [API Documentation](#api-documentation)
 - [LLM Integration](#llm-integration)
 - [Design Decisions](#design-decisions)
 - [Database Schema](#database-schema)
-- [Screenshots](#screenshots)
 
 ---
 
@@ -20,12 +24,24 @@ A full-stack AI-powered support ticket management system with intelligent ticket
 
 ### Core Functionality
 - **Create Support Tickets** - Submit tickets with title, description, category, and priority
-- **AI-Powered Classification** - Automatic category and priority suggestion using OpenAI GPT-3.5
-- **Browse & Filter Tickets** - Search and filter by category, priority, status
-- **Update Ticket Status** - Change status (open → in_progress → resolved → closed)
+- **Smart Classification** - Automatic category and priority suggestion using intelligent analysis
+- **Browse & Filter Tickets** - Search and filter by category, priority, status with real-time updates
+- **Update Ticket Status** - Change status workflow (open → in_progress → resolved → closed)
 - **Real-time Statistics** - Dashboard with aggregated metrics computed at database level
-- **Email Notifications** - Automated emails when tickets are created or status updated (optional)
+- **Email Notifications** - Automated HTML emails when tickets are created or status updated (optional)
 - **Graceful Fallback** - System works even if LLM API is unavailable (keyword-based classification)
+- **Loading Screen** - Beautiful animated loading screen on application startup
+- **How It Works Guide** - Interactive modal explaining system features
+
+### User Interface
+- 🎨 **Modern Design** - Glassmorphism effects, gradients, and smooth animations
+- ✨ **Floating Animations** - Logo and elements with engaging hover effects
+- 🟢 **Status Indicators** - Real-time system status with pulsing animations
+- 💎 **Beautiful Tables** - Priority, category, and status breakdowns with icons
+- 🎯 **Smart Classification UI** - Animated 1.5-second loader when analyzing descriptions
+- 🚀 **Interactive Buttons** - Rocket icon with bounce animation on submit
+- 📋 **Info Banners** - Contextual hints and tips throughout the interface
+- 📊 **Gradient Statistics** - Eye-catching stat cards with hover effects
 
 ### Technical Highlights
 - ✅ All constraints enforced at **database level**
@@ -34,6 +50,8 @@ A full-stack AI-powered support ticket management system with intelligent ticket
 - ✅ **One-command setup** - `docker-compose up --build`
 - ✅ Auto-migration on startup
 - ✅ CORS-enabled for frontend-backend communication
+- ✅ Modern UI with animations, glassmorphism, and responsive design
+- ✅ Production-ready with proper error handling
 
 ---
 
@@ -42,18 +60,18 @@ A full-stack AI-powered support ticket management system with intelligent ticket
 ### Backend
 - **Django 5.0** - Python web framework
 - **Django REST Framework** - RESTful API
-- **PostgreSQL 15** - Relational database
-- **OpenAI API** - LLM integration (GPT-3.5-turbo)
+- **PostgreSQL 15** - Relational database with advanced aggregation
+- **OpenAI API** - Intelligent classification (GPT-3.5-turbo)
 
 ### Frontend
-- **React 18** - UI library
-- **Axios** - HTTP client
-- **CSS3** - Styling (no external UI library for simplicity)
+- **React 18** - UI library with hooks
+- **Axios** - HTTP client for API communication
+- **Modern CSS3** - Glassmorphism, gradients, animations, and responsive design
 
 ### Infrastructure
-- **Docker & Docker Compose** - Containerization
-- **PostgreSQL** - Database service
-- **Node.js 18** - Frontend runtime
+- **Docker & Docker Compose** - Complete containerization
+- **PostgreSQL** - Production-ready database service
+- **Node.js 18** - Frontend build and runtime
 
 ---
 
@@ -64,6 +82,8 @@ A full-stack AI-powered support ticket management system with intelligent ticket
 │  React Frontend │ (Port 3000)
 │  - Ticket Form  │
 │  - Ticket List  │
+│  - Stats        │
+│  - Animations   │
 │  - Stats        │
 └────────┬────────┘
          │ HTTP REST API
@@ -175,7 +195,43 @@ docker-compose down -v
 
 ---
 
-## 📡 API Documentation
+## � Screenshots
+
+### Main Dashboard
+![Main Dashboard](screenshots/Main.jpg)
+*Beautiful glassmorphism header with floating animations and system status indicator*
+
+### Frontend Application
+![Frontend Interface](screenshots/Frontend.jpg)
+*Modern, responsive React interface with smooth animations and intuitive navigation*
+
+### Ticket Submission Form
+![New Ticket Form](screenshots/NewTicket.jpg)
+*Easy-to-use form with smart classification and real-time validation*
+
+### Smart Classification in Action
+![Smart Classification](screenshots/Classify.jpg)
+*Automatic category and priority detection analyzing your ticket description*
+
+### Ticket Management
+![Ticket List](screenshots/Tickets.jpg)
+*Filter, search, and manage all your support tickets with an intuitive interface*
+
+### Real-time Statistics
+![Statistics Dashboard](screenshots/Statistics.jpg)
+*Live analytics with priority, category, and status breakdowns in beautiful table layouts*
+
+### Backend Admin Panel
+![Backend Administration](screenshots/Backend.jpg)
+*Django admin interface for advanced ticket management and system configuration*
+
+### Docker Environment
+![Docker Setup](screenshots/Docker.jpg)
+*Containerized architecture with PostgreSQL, Django backend, and React frontend*
+
+---
+
+## �📡 API Documentation
 
 ### Base URL
 ```
