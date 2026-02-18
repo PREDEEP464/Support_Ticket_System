@@ -208,7 +208,7 @@ docker-compose down -v
 
 ---
 
-## � Screenshots
+## 📸 Screenshots
 
 ### Main Dashboard
 ![Main Dashboard](screenshots/Main.jpg)
@@ -543,19 +543,6 @@ CREATE INDEX idx_tickets_category ON tickets(category);
 
 ---
 
-## 📸 Screenshots
-
-### Creating a Ticket with AI Classification
-![Ticket Form](docs/screenshot-form.png)
-
-### Browsing and Filtering Tickets
-![Ticket List](docs/screenshot-list.png)
-
-### Statistics Dashboard
-![Stats Dashboard](docs/screenshot-stats.png)
-
----
-
 ## 🧪 Testing the Application
 
 ### Manual Testing Checklist
@@ -704,12 +691,4 @@ This project is created for assessment purposes.
 
 ---
 
-## 🙏 Acknowledgments
-
-- OpenAI for GPT-3.5 API
-- Django and Django REST Framework communities
-- React team for excellent documentation
-
----
-
-**Built with ❤️ for Clootrack Tech Intern Assessment**
+**Built with ❤️ by Predeep**
