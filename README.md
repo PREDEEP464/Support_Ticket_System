@@ -24,6 +24,7 @@ A full-stack AI-powered support ticket management system with intelligent ticket
 - **Browse & Filter Tickets** - Search and filter by category, priority, status
 - **Update Ticket Status** - Change status (open → in_progress → resolved → closed)
 - **Real-time Statistics** - Dashboard with aggregated metrics computed at database level
+- **Email Notifications** - Automated emails when tickets are created or status updated (optional)
 - **Graceful Fallback** - System works even if LLM API is unavailable (keyword-based classification)
 
 ### Technical Highlights
@@ -110,6 +111,27 @@ LLM_API_KEY=sk-proj-your-actual-openai-api-key-here
 ```
 
 **Note:** The system works without an API key using keyword-based fallback, but LLM classification requires a valid key.
+
+### Step 2.5: Configure Email Notifications (Optional)
+
+To enable email notifications when tickets are created or updated, add these to your `.env`:
+
+```env
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+EMAIL_HOST_USER=your-email@gmail.com
+EMAIL_HOST_PASSWORD=your-app-password
+DEFAULT_FROM_EMAIL=noreply@ticketsystem.com
+ADMIN_EMAIL=admin@ticketsystem.com
+```
+
+**For Gmail:**
+1. Enable 2-Factor Authentication
+2. Generate an App Password: https://myaccount.google.com/apppasswords
+3. Use the App Password (not your regular password)
+
+**Note:** Email is completely optional. The system works perfectly without it - notifications just won't be sent.
 
 ### Step 3: Start the Application
 
@@ -382,6 +404,13 @@ Return ONLY a JSON object: {"category": "...", "priority": "..."}
 - **Response normalization** handles LLM inconsistencies
 - **Timeout protection** prevents hanging requests
 
+#### 5. Email Service
+- **Graceful degradation** - works with or without SMTP configuration
+- **HTML email templates** for professional appearance
+- **Asynchronous-ready** - doesn't block ticket creation
+- **Logging** for debugging email issues
+- **Fail silently** - email failures don't break app functionality
+
 ### Frontend Architecture
 
 #### 1. Component Structure
@@ -537,15 +566,17 @@ docker-compose ps
 - Tickets cannot be deleted (only closed)
 - All users have permission to update any ticket
 - Statistics auto-refresh on new ticket creation
+- Email notifications are optional (system works without SMTP config)
 
 ### Future Enhancements
 - User authentication and authorization
 - Ticket assignment to support agents
-- Email notifications
+- Email notifications to ticket submitters (not just admins)
 - File attachments
 - Ticket comments/threads
 - SLA tracking
 - Advanced analytics
+- Real-time WebSocket updates
 
 ---
 
@@ -565,6 +596,7 @@ Support_Ticket_System/
 │   │   ├── serializers.py
 │   │   ├── views.py
 │   │   ├── llm_service.py
+│   │   ├── email_service.py
 │   │   └── ...
 │   ├── Dockerfile
 │   ├── requirements.txt
@@ -591,6 +623,7 @@ Support_Ticket_System/
 - `backend/tickets/models.py` - Data model with DB constraints
 - `backend/tickets/views.py` - API endpoints
 - `backend/tickets/llm_service.py` - AI classification logic
+- `backend/tickets/email_service.py` - Email notification system
 - `frontend/src/api.js` - Axios HTTP client
 - `docker-compose.yml` - Multi-container orchestration
 

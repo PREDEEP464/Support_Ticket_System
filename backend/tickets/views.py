@@ -15,6 +15,7 @@ from .serializers import (
     TicketStatsSerializer
 )
 from .llm_service import llm_service
+from .email_service import email_service
 
 
 class TicketViewSet(viewsets.ModelViewSet):
@@ -66,6 +67,11 @@ class TicketViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
+        
+        # Send email notification (graceful fallback if not configured)
+        ticket = serializer.instance
+        email_service.send_ticket_created_notification(ticket)
+        
         headers = self.get_success_headers(serializer.data)
         return Response(
             serializer.data,
@@ -75,8 +81,18 @@ class TicketViewSet(viewsets.ModelViewSet):
     
     def partial_update(self, request, *args, **kwargs):
         """Update ticket (PATCH) - typically for status changes"""
+        instance = self.get_object()
+        old_status = instance.status
+        
         kwargs['partial'] = True
-        return self.update(request, *args, **kwargs)
+        response = self.update(request, *args, **kwargs)
+        
+        # Send email if status changed
+        instance.refresh_from_db()
+        if instance.status != old_status:
+            email_service.send_ticket_status_update_notification(instance, old_status)
+        
+        return response
     
     @action(detail=False, methods=['get'], url_path='stats')
     def statistics(self, request):
