@@ -13,13 +13,25 @@ function App() {
   };
 
   return (
-    <div className="container">
-      <header style={{ textAlign: 'center', marginBottom: '30px' }}>
-        <h1>Support Ticket System</h1>
-        <p style={{ color: '#666' }}>
-          Enterprise ticket management with intelligent classification
-        </p>
-      </header>
+    <div className="app-wrapper">
+      <div className="container">
+        <header className="app-header">
+          <div className="header-content">
+            <div className="logo-section">
+              <div className="logo-icon">🎫</div>
+              <div>
+                <h1 className="app-title">Support Ticket System</h1>
+                <p className="app-subtitle">
+                  🚀 Enterprise ticket management with intelligent classification
+                </p>
+              </div>
+            </div>
+            <div className="header-badge">
+              <span className="status-indicator"></span>
+              <span className="status-text">System Online</span>
+            </div>
+          </div>
+        </header>
 
       {/* Statistics Dashboard */}
       <StatsDashboard refreshTrigger={refreshCounter} />
@@ -30,9 +42,13 @@ function App() {
       {/* Ticket List with Filters */}
       <TicketList refreshTrigger={refreshCounter} />
 
-      <footer style={{ textAlign: 'center', marginTop: '40px', color: '#999', fontSize: '14px' }}>
-        <p>Support Ticket System © 2026 | Built with Django + React + PostgreSQL</p>
+      <footer className="app-footer">
+        <div className="footer-content">
+          <p>Support Ticket System © 2026</p>
+          <p className="tech-stack">Built with Django • React • PostgreSQL</p>
+        </div>
       </footer>
+    </div>
     </div>
   );
 }

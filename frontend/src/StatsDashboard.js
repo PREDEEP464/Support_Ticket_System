@@ -27,18 +27,27 @@ const StatsDashboard = ({ refreshTrigger }) => {
 
   if (loading) {
     return (
-      <div className="card">
-        <h2>Statistics Dashboard</h2>
-        <div className="loading">Loading statistics...</div>
+      <div className="card stats-card">
+        <div className="card-header">
+          <h2>📊 Statistics Dashboard</h2>
+          <p className="card-subtitle">Real-time ticket analytics</p>
+        </div>
+        <div className="loading">
+          <div className="loader-spinner-large"></div>
+          <p>Loading statistics...</p>
+        </div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="card">
-        <h2>Statistics Dashboard</h2>
-        <div className="error">{error}</div>
+      <div className="card stats-card">
+        <div className="card-header">
+          <h2>📊 Statistics Dashboard</h2>
+          <p className="card-subtitle">Real-time ticket analytics</p>
+        </div>
+        <div className="error">⚠️ {error}</div>
       </div>
     );
   }
@@ -48,8 +57,11 @@ const StatsDashboard = ({ refreshTrigger }) => {
   }
 
   return (
-    <div className="card">
-      <h2>Statistics Dashboard</h2>
+    <div className="card stats-card">
+      <div className="card-header">
+        <h2>📊 Statistics Dashboard</h2>
+        <p className="card-subtitle">Real-time ticket analytics and insights</p>
+      </div>
 
       {/* Main Stats */}
       <div className="stats-grid">

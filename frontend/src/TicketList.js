@@ -98,8 +98,11 @@ const TicketList = ({ refreshTrigger }) => {
   };
 
   return (
-    <div className="card">
-      <h2>Support Tickets</h2>
+    <div className="card ticket-list-card">
+      <div className="card-header">
+        <h2>🎯 All Support Tickets</h2>
+        <p className="card-subtitle">Filter and search through your tickets</p>
+      </div>
 
       {/* Filters */}
       <div className="filters">
@@ -149,21 +152,33 @@ const TicketList = ({ refreshTrigger }) => {
       </div>
 
       {/* Loading State */}
-      {loading && <div className="loading">Loading tickets...</div>}
+      {loading && (
+        <div className="loading">
+          <div className="loader-spinner-large"></div>
+          <p>Loading tickets...</p>
+        </div>
+      )}
 
       {/* Error State */}
-      {error && <div className="error">{error}</div>}
+      {error && <div className="error">⚠️ {error}</div>}
 
       {/* Tickets List */}
       {!loading && !error && (
         <div>
           {tickets.length === 0 ? (
-            <p className="text-center">No tickets found. Create your first ticket above!</p>
+            <div className="empty-state">
+              <div className="empty-icon">📭</div>
+              <h3>No tickets found</h3>
+              <p>Create your first ticket above to get started!</p>
+            </div>
           ) : (
             <div>
-              <p style={{marginBottom: '15px', color: '#666'}}>
-                Showing {tickets.length} ticket{tickets.length !== 1 ? 's' : ''}
-              </p>
+              <div className="ticket-count">
+                <span className="count-badge">{tickets.length}</span>
+                <span className="count-text">
+                  ticket{tickets.length !== 1 ? 's' : ''} found
+                </span>
+              </div>
               {tickets.map(ticket => (
                 <div
                   key={ticket.id}

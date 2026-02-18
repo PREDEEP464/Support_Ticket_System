@@ -37,8 +37,18 @@ const TicketForm = ({ onTicketCreated }) => {
     setIsClassifying(true);
     setError('');
 
+    // Start timer to show loader for minimum 1.5 seconds
+    const startTime = Date.now();
+
     try {
       const response = await ticketAPI.classifyTicket(formData.description);
+      
+      // Calculate remaining time to show loader
+      const elapsedTime = Date.now() - startTime;
+      const remainingTime = Math.max(0, 1500 - elapsedTime);
+      
+      // Wait for remaining time before hiding loader
+      await new Promise(resolve => setTimeout(resolve, remainingTime));
       
       // Pre-fill the dropdowns with smart suggestions
       setFormData(prev => ({
@@ -90,11 +100,14 @@ const TicketForm = ({ onTicketCreated }) => {
   };
 
   return (
-    <div className="card">
-      <h2>Submit New Ticket</h2>
+    <div className="card ticket-form-card">
+      <div className="card-header">
+        <h2>📝 Submit New Ticket</h2>
+        <p className="card-subtitle">Describe your issue and we'll categorize it automatically</p>
+      </div>
       
-      {error && <div className="error">{error}</div>}
-      {success && <div className="success">{success}</div>}
+      {error && <div className="error">⚠️ {error}</div>}
+      {success && <div className="success">✅ {success}</div>}
       
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -124,9 +137,10 @@ const TicketForm = ({ onTicketCreated }) => {
             placeholder="Provide detailed information about your issue..."
           />
           {isClassifying && (
-            <small style={{color: '#007bff'}}>
-              ✓ Analyzing your description...
-            </small>
+            <div className="analyzing-loader">
+              <div className="loader-spinner"></div>
+              <span className="loader-text">Analyzing your description...</span>
+            </div>
           )}
         </div>
 
@@ -166,8 +180,18 @@ const TicketForm = ({ onTicketCreated }) => {
           </select>
         </div>
 
-        <button type="submit" disabled={isSubmitting || isClassifying}>
-          {isSubmitting ? 'Creating...' : 'Submit Ticket'}
+        <button type="submit" disabled={isSubmitting || isClassifying} className="submit-button">
+          {isSubmitting ? (
+            <>
+              <span className="button-spinner"></span>
+              Creating Ticket...
+            </>
+          ) : (
+            <>
+              <span className="button-icon">🚀</span>
+              Submit Ticket
+            </>
+          )}
         </button>
       </form>
     </div>
