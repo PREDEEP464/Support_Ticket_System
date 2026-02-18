@@ -40,7 +40,7 @@ const TicketForm = ({ onTicketCreated }) => {
     try {
       const response = await ticketAPI.classifyTicket(formData.description);
       
-      // Pre-fill the dropdowns with AI suggestions
+      // Pre-fill the dropdowns with smart suggestions
       setFormData(prev => ({
         ...prev,
         category: response.data.suggested_category,
@@ -125,14 +125,14 @@ const TicketForm = ({ onTicketCreated }) => {
           />
           {isClassifying && (
             <small style={{color: '#007bff'}}>
-              🤖 AI is analyzing your description...
+              ✓ Analyzing your description...
             </small>
           )}
         </div>
 
         <div className="form-group">
           <label htmlFor="category">
-            Category * {isClassifying && '(AI suggesting...)'}
+            Category * {isClassifying && '(Auto-detecting...)'}
           </label>
           <select
             id="category"
@@ -150,7 +150,7 @@ const TicketForm = ({ onTicketCreated }) => {
 
         <div className="form-group">
           <label htmlFor="priority">
-            Priority * {isClassifying && '(AI suggesting...)'}
+            Priority * {isClassifying && '(Auto-detecting...)'}
           </label>
           <select
             id="priority"
