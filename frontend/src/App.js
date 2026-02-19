@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import TicketForm from './TicketForm';
-import TicketList from './TicketList';
-import StatsDashboard from './StatsDashboard';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Sidebar from './Sidebar';
+import Dashboard from './pages/Dashboard';
+import NewTicket from './pages/NewTicket';
+import AllTickets from './pages/AllTickets';
 import './index.css';
 
 function App() {
-  const [refreshCounter, setRefreshCounter] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [showHowItWorks, setShowHowItWorks] = useState(false);
 
@@ -16,11 +17,6 @@ function App() {
     }, 2000);
     return () => clearTimeout(timer);
   }, []);
-
-  const handleTicketCreated = () => {
-    // Trigger refresh for both stats and ticket list
-    setRefreshCounter(prev => prev + 1);
-  };
 
   // Loading Screen
   if (isLoading) {
@@ -37,49 +33,24 @@ function App() {
   }
 
   return (
-    <div className="app-wrapper">
-      <div className="container">
-        <header className="app-header">
-          <div className="header-content">
-            <div className="logo-section">
-              <img src="/Support_System_Favicon.png" alt="Logo" className="logo-icon" />
-              <div>
-                <h1 className="app-title">Support Ticket System</h1>
-                <p className="app-subtitle">
-                  🚀 Enterprise ticket management with intelligent classification
-                </p>
-              </div>
+    <Router>
+      <div className="app-container">
+        <Sidebar onShowHowItWorks={() => setShowHowItWorks(true)} />
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/new-ticket" element={<NewTicket />} />
+            <Route path="/tickets" element={<AllTickets />} />
+          </Routes>
+          
+          <footer className="app-footer">
+            <div className="footer-content">
+              <p>Support Ticket System © 2026</p>
+              <p className="tech-stack">Built with Django • React • PostgreSQL</p>
             </div>
-            <div className="header-actions">
-              <button 
-                className="how-it-works-btn"
-                onClick={() => setShowHowItWorks(true)}
-              >
-                ❓ How It Works
-              </button>
-              <div className="header-badge">
-                <span className="status-indicator"></span>
-                <span className="status-text">System Online</span>
-              </div>
-            </div>
-          </div>
-        </header>
-
-      {/* Statistics Dashboard */}
-      <StatsDashboard refreshTrigger={refreshCounter} />
-
-      {/* Create New Ticket Form */}
-      <TicketForm onTicketCreated={handleTicketCreated} />
-
-      {/* Ticket List with Filters */}
-      <TicketList refreshTrigger={refreshCounter} />
-
-      <footer className="app-footer">
-        <div className="footer-content">
-          <p>Support Ticket System © 2026</p>
-          <p className="tech-stack">Built with Django • React • PostgreSQL</p>
-        </div>
-      </footer>
+          </footer>
+        </main>
+      </div>
       
       {/* How It Works Modal */}
       {showHowItWorks && (
@@ -132,8 +103,7 @@ function App() {
           </div>
         </div>
       )}
-    </div>
-    </div>
+    </Router>
   );
 }
 
