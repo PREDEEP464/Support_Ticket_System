@@ -38,7 +38,6 @@ function Sidebar({ onShowHowItWorks }) {
       
       <div className="sidebar-footer">
         <button className="sidebar-help-btn" onClick={onShowHowItWorks}>
-          {/* <span className="sidebar-icon-small">❓</span> */}
           <span className="sidebar-label">❓ How It Works</span>
         </button>
         
