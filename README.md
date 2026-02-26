@@ -677,10 +677,4 @@ Support_Ticket_System/
 
 ---
 
-## 📄 License
-
-This project is created for assessment purposes.
-
----
-
 **Built with ❤️ by Predeep**
